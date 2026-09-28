@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ee">
+  <title>إدارة الكتالوج | Sama-Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/tailwind.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+    .latin { font-family: 'Manrope', sans-serif; direction: ltr; }
+    .image-preview { aspect-ratio: 4 / 3; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f7f4ee] text-[#282923] antialiased">
+  <header class="border-b border-black/10 bg-white/70">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+      <div class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-[#282923] text-white"><i data-lucide="panels-top-left" class="h-5 w-5" aria-hidden="true"></i></span>
+        <div><p class="font-semibold">Sama-Design</p><p class="text-xs text-black/55">إدارة الكتالوج</p></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <form action="/admin/logout" method="post"><button type="submit" class="inline-flex min-h-10 items-center gap-2 rounded-full border border-black/15 px-4 text-sm transition hover:bg-black/5"><i data-lucide="log-out" class="h-4 w-4" aria-hidden="true"></i> تسجيل الخروج</button></form>
+        <a href="./index.html#catalog" class="inline-flex min-h-10 items-center gap-2 rounded-full border border-black/15 px-4 text-sm transition hover:bg-black/5"><i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i> العودة إلى الموقع</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-9 sm:px-8 sm:py-12">
+    <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+      <div><p class="text-sm font-semibold text-[#875d3b]">SAMA-DESIGN / CATALOG</p><h1 class="mt-2 text-3xl font-semibold sm:text-4xl">صور الأعمال</h1><p class="mt-3 text-sm leading-7 text-black/60">حدّث صورة أي قطعة من المعرض أو أعدها إلى صورتها الأصلية.</p></div>
+      <button id="reset-all" type="button" class="inline-flex min-h-10 w-fit items-center gap-2 rounded-full border border-black/15 px-4 text-sm transition hover:bg-black/5"><i data-lucide="rotate-ccw" class="h-4 w-4" aria-hidden="true"></i> استعادة الصور الأصلية</button>
+    </div>
+
+    <aside class="mt-7 flex gap-3 border border-[#b78457]/30 bg-[#eee5d8] p-4 sm:p-5" role="note">
+      <i data-lucide="info" class="mt-0.5 h-5 w-5 shrink-0 text-[#875d3b]" aria-hidden="true"></i>
+      <p class="text-sm leading-7 text-[#51483e]">هذه نسخة إدارة محلية: التغييرات تُحفظ في هذا المتصفح فقط ولا تظهر للزوار من أجهزة أخرى. قبل نشر لوحة الإدارة على الإنترنت، يجب ربطها بخدمة تخزين وتسجيل دخول مثل Supabase.</p>
+    </aside>
+
+    <p id="save-status" class="mt-5 min-h-6 text-sm text-[#687365]" role="status" aria-live="polite">جاري تحميل صور الكتالوج…</p>
+    <section id="admin-grid" class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" aria-label="صور عناصر الكتالوج"></section>
+  </main>
+
+  <script src="./admin.js"></script>
+</body>
+</html>

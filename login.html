@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ee">
+  <title>دخول الإدارة | Sama-Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/tailwind.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>body { font-family: 'IBM Plex Sans Arabic', sans-serif; } .latin { font-family: 'Manrope', sans-serif; direction: ltr; }</style>
+</head>
+<body class="flex min-h-screen items-center justify-center bg-[#f7f4ee] px-5 py-10 text-[#282923] antialiased">
+  <main class="w-full max-w-md border border-black/10 bg-white p-6 shadow-sm sm:p-9">
+    <a href="/" class="inline-flex items-center gap-3" aria-label="Sama-Design الصفحة الرئيسية">
+      <span class="grid h-11 w-11 place-items-center rounded-full bg-[#282923] text-white"><i data-lucide="panel-top" class="h-5 w-5" aria-hidden="true"></i></span>
+      <span><span class="block font-semibold">Sama-Design</span><span class="mt-1 block text-xs text-black/55">دخول الإدارة</span></span>
+    </a>
+    <h1 class="mt-9 text-2xl font-semibold">تسجيل الدخول</h1>
+    <p class="mt-2 text-sm leading-7 text-black/60">أدخل بيانات حساب الإدارة للمتابعة.</p>
+    <p id="login-error" class="mt-5 hidden border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800" role="alert">اسم المستخدم أو كلمة المرور غير صحيحة، أو المحاولات كثيرة. حاول لاحقاً.</p>
+    <form action="/admin/login" method="post" class="mt-6 space-y-4">
+      <label class="block text-sm font-medium" for="username">اسم المستخدم</label>
+      <input id="username" name="username" type="text" autocomplete="username" required maxlength="80" class="-mt-2 min-h-11 w-full border border-black/15 px-3 py-2 outline-none focus:border-[#875d3b]">
+      <label class="block text-sm font-medium" for="password">كلمة المرور</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required class="-mt-2 min-h-11 w-full border border-black/15 px-3 py-2 outline-none focus:border-[#875d3b]">
+      <button type="submit" class="inline-flex min-h-11 w-full items-center justify-center gap-2 bg-[#282923] px-4 font-semibold text-white transition hover:bg-[#875d3b]"><i data-lucide="log-in" class="h-4 w-4" aria-hidden="true"></i> دخول آمن</button>
+    </form>
+    <a href="/" class="mt-6 inline-flex items-center gap-2 text-sm text-[#875d3b] hover:underline"><i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i> العودة إلى الموقع</a>
+  </main>
+  <script>
+    if (new URLSearchParams(location.search).has('error')) document.getElementById('login-error').classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ee">
+  <meta name="description" content="سما ديزاين لتفصيل المطابخ والأثاث والديكورات الخشبية حسب الطلب في عين عريك، رام الله.">
+  <title>Sama-Design | إبداع في تفصيل الخشب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/tailwind.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+    .latin { font-family: 'Manrope', sans-serif; direction: ltr; }
+    .hero-grain {
+      background-image: linear-gradient(90deg, rgba(31, 30, 26, .84) 0%, rgba(31, 30, 26, .61) 48%, rgba(31, 30, 26, .16) 100%), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=88');
+      background-position: center, center 55%;
+      background-size: cover;
+    }
+    .filter-button[aria-pressed="true"] { background: #282923; color: #fff; }
+    .catalog-item[hidden] { display: none; }
+    .reveal { animation: rise-in .7s both; }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink antialiased">
+  <header class="absolute inset-x-0 top-0 z-20 border-b border-white/15 text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-5 sm:px-8">
+      <a href="#home" class="flex shrink-0 items-center gap-3" aria-label="Sama-Design الصفحة الرئيسية">
+        <span class="grid h-10 w-10 place-items-center rounded-full border border-white/40 bg-white/10" aria-hidden="true"><i data-lucide="panel-top" class="h-5 w-5"></i></span>
+        <span class="leading-tight"><span class="block text-lg font-bold">Sama-Design</span><span class="mt-1 block text-[10px] tracking-[.18em] text-white/65">WOOD · FORM · HOME</span></span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm text-white/85 md:flex" aria-label="التنقل الرئيسي">
+        <a class="transition hover:text-white" href="#about">من نحن</a>
+        <a class="transition hover:text-white" href="#catalog">أعمالنا</a>
+        <a class="transition hover:text-white" href="#contact">تواصل معنا</a>
+      </nav>
+      <a href="https://wa.me/970598902253" target="_blank" rel="noopener noreferrer" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-[#e9dfd0] sm:px-5">
+        <i data-lucide="message-circle" class="h-4 w-4" aria-hidden="true"></i><span class="hidden sm:inline">احكِ لنا عن مشروعك</span><span class="sm:hidden">واتساب</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero-grain relative flex min-h-[690px] items-end overflow-hidden text-white sm:min-h-[760px]">
+      <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image: linear-gradient(135deg, transparent 0 49.8%, rgba(255,255,255,.12) 50%, transparent 50.2%); background-size: 44px 44px;"></div>
+      <div class="relative mx-auto grid w-full max-w-7xl items-end gap-12 px-5 pb-20 pt-36 sm:px-8 sm:pb-24 lg:grid-cols-[1fr_auto] lg:gap-20">
+        <div class="max-w-3xl reveal">
+          <p class="mb-5 flex items-center gap-3 text-sm font-medium text-white/75"><span class="h-px w-9 bg-[#d8b48d]"></span>تفصيل محلي، بروح بيتك</p>
+          <h1 class="max-w-3xl text-4xl font-semibold leading-[1.45] sm:text-5xl sm:leading-[1.4] lg:text-6xl">Sama-Design <span class="text-[#dfc09e]">|</span><br>إبداع في تفصيل الخشب<br class="hidden sm:block"> وأحدث الديكورات</h1>
+          <p class="mt-6 max-w-xl text-base leading-8 text-white/78 sm:text-lg">نحوّل فكرتك إلى قطعة تعيش معك. مطابخ وأثاث وديكورات خشبية مصمّمة بعناية، ومفصّلة خصيصاً لمساحتك.</p>
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href="https://wa.me/970598902253" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-[#b78457] px-6 py-3 font-semibold text-white transition hover:bg-[#9c6b43] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ink">
+              <i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i> اطلب استشارتك الآن
+            </a>
+            <a href="#catalog" class="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/35 px-6 py-3 font-medium text-white transition hover:bg-white/10">اكتشف أعمالنا <i data-lucide="arrow-left" class="h-4 w-4" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="hidden border-r border-white/30 pr-6 text-sm leading-7 text-white/80 lg:block">
+          <span class="latin block text-3xl font-semibold text-white">01 <span class="text-[#dfc09e]">/</span> 03</span>
+          <span class="mt-2 block">تفاصيل تصنع<br>فرقاً في كل زاوية</span>
+        </div>
+      </div>
+      <a href="#about" aria-label="انتقل إلى من نحن" class="absolute bottom-7 left-1/2 hidden -translate-x-1/2 text-white/65 transition hover:text-white sm:block"><i data-lucide="arrow-down" class="h-5 w-5"></i></a>
+    </section>
+
+    <section id="about" class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+      <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
+        <div>
+          <p class="flex items-center gap-3 text-sm font-semibold text-wood"><span class="h-px w-8 bg-clay"></span>لماذا سما ديزاين؟</p>
+          <h2 class="mt-5 max-w-lg text-3xl font-semibold leading-relaxed sm:text-4xl">خشب يحمل حكايتك، وتفصيل يشبهك.</h2>
+          <p class="mt-5 max-w-lg text-base leading-8 text-ink/65">من أول قياس حتى آخر لمسة، نعتني بالتفاصيل ونصنع حلولاً عملية وجميلة تناسب بيتك وذوقك.</p>
+        </div>
+        <div class="grid gap-x-8 sm:grid-cols-3">
+          <article class="border-t border-ink/15 py-6 sm:py-7">
+            <span class="mb-5 grid h-11 w-11 place-items-center rounded-full bg-[#ece5da] text-wood"><i data-lucide="hammer" class="h-5 w-5" aria-hidden="true"></i></span>
+            <h3 class="font-semibold">صنعة بإتقان</h3>
+            <p class="mt-2 text-sm leading-7 text-ink/60">عناية حقيقية بالخامات والقياسات والتشطيب.</p>
+          </article>
+          <article class="border-t border-ink/15 py-6 sm:py-7">
+            <span class="mb-5 grid h-11 w-11 place-items-center rounded-full bg-[#ece5da] text-wood"><i data-lucide="ruler" class="h-5 w-5" aria-hidden="true"></i></span>
+            <h3 class="font-semibold">على قياسك</h3>
+            <p class="mt-2 text-sm leading-7 text-ink/60">تصميم مخصّص يوازن بين احتياجك وجمال المساحة.</p>
+          </article>
+          <article class="border-t border-ink/15 py-6 sm:py-7">
+            <span class="mb-5 grid h-11 w-11 place-items-center rounded-full bg-[#ece5da] text-wood"><i data-lucide="map-pin" class="h-5 w-5" aria-hidden="true"></i></span>
+            <h3 class="font-semibold">من قلب البلد</h3>
+            <p class="mt-2 text-sm leading-7 text-ink/60">ورشتنا في عين عريك لخدمتكم في رام الله ومحيطها.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="border-y border-ink/10 bg-[#efebe3]">
+      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
+        <div class="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+          <div>
+            <p class="flex items-center gap-3 text-sm font-semibold text-wood"><span class="h-px w-8 bg-clay"></span>من ورشتنا إلى بيتك</p>
+            <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">مختارات من أعمالنا</h2>
+            <p class="mt-3 text-sm leading-7 text-ink/60">كل قطعة تبدأ بفكرة، وتنتهي بتفصيل لا يشبه سواه.</p>
+          </div>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="تصفية الأعمال حسب النوع">
+            <button type="button" class="filter-button rounded-full border border-ink/15 px-4 py-2 text-sm transition hover:border-ink" data-filter="all" aria-pressed="true">الكل</button>
+            <button type="button" class="filter-button rounded-full border border-ink/15 px-4 py-2 text-sm transition hover:border-ink" data-filter="kitchen" aria-pressed="false">المطابخ</button>
+            <button type="button" class="filter-button rounded-full border border-ink/15 px-4 py-2 text-sm transition hover:border-ink" data-filter="table" aria-pressed="false">الطاولات</button>
+            <button type="button" class="filter-button rounded-full border border-ink/15 px-4 py-2 text-sm transition hover:border-ink" data-filter="decor" aria-pressed="false">الديكورات</button>
+          </div>
+        </div>
+
+        <div id="catalog-grid" class="mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="catalog-item group" data-category="kitchen">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%81%D8%B5%D9%8A%D9%84%20%D9%85%D8%B7%D8%A8%D8%AE" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن مطبخ خشبي عصري">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="kitchen-1" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=850&q=82" alt="مطبخ خشبي عصري بتصميم مفتوح" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">مطابخ</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">مطبخ بخطوط هادئة</h3><p class="mt-1 text-sm text-ink/55">خشب طبيعي · تفصيل خاص</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="table">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%81%D8%B5%D9%8A%D9%84%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن طاولة طعام من الخشب">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="table-1" src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=850&q=82" alt="طاولة طعام خشبية في مساحة دافئة" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">طاولات</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">طاولة تجمع الأحبة</h3><p class="mt-1 text-sm text-ink/55">خشب صلب · مقاسات حسب الطلب</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="decor">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%81%D8%B5%D9%8A%D9%84%20%D8%AE%D8%B2%D8%A7%D8%A6%D9%86" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن خزانة ملابس مفصلة">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="wardrobe-1" src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=850&q=82" alt="خزانة خشبية مدمجة في تصميم غرفة نوم" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">خزائن</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">خزانة بتفاصيل ذكية</h3><p class="mt-1 text-sm text-ink/55">استغلال أنيق لكل مساحة</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="decor">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%AF%D9%8A%D9%83%D9%88%D8%B1%20%D8%AE%D8%B4%D8%A8%D9%8A" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن ديكور شرائح خشبية">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="wall-1" src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?auto=format&fit=crop&w=850&q=82" alt="جدار بلمسات خشبية وديكور هادئ" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">ديكورات</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">جدار بلمسة خشب</h3><p class="mt-1 text-sm text-ink/55">ألواح وشرائح ديكورية</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="kitchen">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%81%D8%B5%D9%8A%D9%84%20%D9%85%D8%B7%D8%A8%D8%AE" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن مطبخ بتشطيب خشبي">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="kitchen-2" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=850&q=82" alt="مطبخ بتشطيبات خشبية ومساحة مشرقة" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">مطابخ</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">مطبخ يليق ببيتك</h3><p class="mt-1 text-sm text-ink/55">تخطيط عملي · تشطيب دافئ</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="table">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%81%D8%B5%D9%8A%D9%84%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن طاولة جانبية خشبية">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="table-2" src="https://images.unsplash.com/photo-1499933374294-4584851497cc?auto=format&fit=crop&w=850&q=82" alt="طاولة خشبية جانبية في غرفة معيشة" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">طاولات</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">طاولة بتوقيعك</h3><p class="mt-1 text-sm text-ink/55">تفاصيل بسيطة، حضور واضح</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="decor">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%81%D8%B5%D9%8A%D9%84%20%D8%AE%D8%B2%D8%A7%D8%A6%D9%86" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن خزانة خشبية مخصصة">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="wardrobe-2" src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=850&q=82" alt="أثاث وخزانة بتفاصيل خشبية عصرية" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">خزائن</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">خزانة مصمّمة لمساحتك</h3><p class="mt-1 text-sm text-ink/55">تنظيم جميل من الداخل والخارج</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+          <article class="catalog-item group" data-category="decor">
+            <a href="https://wa.me/970598902253?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%AF%D9%8A%D9%83%D9%88%D8%B1%20%D8%AE%D8%B4%D8%A8%D9%8A" target="_blank" rel="noopener noreferrer" class="block" aria-label="استفسر عبر واتساب عن ديكور خشبي لغرفة المعيشة">
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#d9d2c8]"><img data-image-key="living-1" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=850&q=82" alt="ديكور غرفة معيشة بتفاصيل طبيعية دافئة" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"><span class="absolute right-3 top-3 bg-paper/90 px-3 py-1 text-xs">ديكورات</span></div>
+              <div class="flex items-center justify-between gap-3 pt-4"><div><h3 class="font-semibold">تفاصيل تصنع الفرق</h3><p class="mt-1 text-sm text-ink/55">لمسات خشبية بروح عصرية</p></div><i data-lucide="arrow-up-left" class="h-5 w-5 shrink-0 text-wood transition group-hover:-translate-x-1 group-hover:-translate-y-1" aria-hidden="true"></i></div>
+            </a>
+          </article>
+        </div>
+        <p id="filter-status" class="sr-only" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="bg-ink text-white">
+      <div class="mx-auto flex max-w-7xl flex-col gap-7 px-5 py-14 sm:px-8 md:flex-row md:items-center md:justify-between">
+        <div><p class="text-sm text-[#dfc09e]">فكرتك تستحق أن ترى النور</p><h2 class="mt-2 text-2xl font-semibold sm:text-3xl">خلّينا نبدأ بتفصيلها معاً.</h2></div>
+        <a href="https://wa.me/970598902253" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 w-fit items-center gap-2 rounded-full bg-[#b78457] px-6 py-3 font-semibold transition hover:bg-[#9c6b43]"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i> تواصل عبر واتساب <i data-lucide="arrow-left" class="h-4 w-4" aria-hidden="true"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="border-t border-white/10 bg-ink text-white">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.1fr_1fr_1fr] md:py-16">
+      <div>
+        <a href="#home" class="inline-flex items-center" aria-label="العودة إلى الصفحة الرئيسية"><span class="grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-white/10 text-white"><i data-lucide="panel-top" class="h-5 w-5" aria-hidden="true"></i></span></a>
+        <p class="mt-4 max-w-xs text-sm leading-7 text-white/65">تفصيل خشب وأثاث وديكورات، بمحبة وإتقان من عين عريك.</p>
+      </div>
+      <div>
+        <h2 class="font-semibold">زورونا</h2>
+        <address class="mt-4 not-italic text-sm leading-7 text-white/65">فلسطين - رام الله - عين عريك - الشارع الرئيسي</address>
+        <a class="mt-2 inline-flex items-center gap-2 text-sm font-medium text-[#d8b48d] hover:text-white hover:underline" href="https://www.google.com/maps/search/?api=1&query=Ein+Areeq%2C+Ramallah%2C+Palestine" target="_blank" rel="noopener noreferrer"><i data-lucide="map" class="h-4 w-4" aria-hidden="true"></i> افتح الموقع على خرائط Google</a>
+      </div>
+      <div>
+        <h2 class="font-semibold">يسعدنا تواصلكم</h2>
+        <div class="mt-4 flex flex-col items-start gap-3 text-sm text-white/65">
+          <a class="inline-flex items-center gap-2 transition hover:text-[#d8b48d]" href="tel:+970598902253" dir="ltr"><i data-lucide="phone" class="h-4 w-4" aria-hidden="true"></i>+970 598 902 253</a>
+          <a class="inline-flex items-center gap-2 transition hover:text-[#d8b48d]" href="https://wa.me/970598902253" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle" class="h-4 w-4" aria-hidden="true"></i>واتساب مباشر</a>
+          <a class="inline-flex items-center gap-2 transition hover:text-[#d8b48d]" href="mailto:designsama6@gmail.com" dir="ltr"><i data-lucide="mail" class="h-4 w-4" aria-hidden="true"></i>designsama6@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10"><div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-xs text-white/50 sm:px-8 sm:flex-row sm:items-center sm:justify-between"><span>© <span id="year"></span> Sama-Design. جميع الحقوق محفوظة.</span><span>تصميم وبرمجة <span class="latin font-semibold text-white/80">Nexora Tech Solution</span></span><a href="#home" class="transition hover:text-white">العودة إلى الأعلى ↑</a></div></div>
+  </footer>
+
+  <script src="./catalog-images.js"></script>
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const catalogItems = document.querySelectorAll('.catalog-item');
+    const filterStatus = document.getElementById('filter-status');
+    const categoryNames = { all: 'كل الأعمال', kitchen: 'المطابخ', table: 'الطاولات', decor: 'الديكورات' };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedCategory = button.dataset.filter;
+        let visibleCount = 0;
+
+        filterButtons.forEach((filterButton) => {
+          filterButton.setAttribute('aria-pressed', String(filterButton === button));
+        });
+        catalogItems.forEach((item) => {
+          const isVisible = selectedCategory === 'all' || item.dataset.category === selectedCategory;
+          item.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+        filterStatus.textContent = `عرض ${visibleCount} من الأعمال ضمن ${categoryNames[selectedCategory]}`;
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>
