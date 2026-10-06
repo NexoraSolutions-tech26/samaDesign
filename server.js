@@ -147,6 +147,7 @@ app.post('/admin/logout', requireAdmin, (req, res) => {
 });
 
 app.use('/dist', express.static(path.join(root, 'dist'), { dotfiles: 'deny', index: false }));
+app.use('/assets', express.static(path.join(root, 'assets'), { dotfiles: 'deny', index: false }));
 app.get('/catalog-images.js', (req, res) => res.sendFile(path.join(root, 'catalog-images.js')));
 app.use((req, res) => res.sendStatus(404));
 
