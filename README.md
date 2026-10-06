@@ -11,3 +11,9 @@ Run `npm run admin:setup` once to set the admin password. The password is entere
 The admin route is protected by server-side authentication. Catalog image changes are still stored in the current browser's local storage and do not synchronize to visitors or other devices; shared production storage still needs to be connected.
 
 Rebuild the Tailwind stylesheet after changing page styles with `npm run build`. For production, set `NODE_ENV=production` and serve over HTTPS so the authentication cookie is marked Secure.
+
+## Deploy to Render
+
+Create a new Blueprint in Render and select this repository. Render reads `render.yaml`, installs the locked dependencies, builds the stylesheet, and starts the Node server. Render provides the `PORT` environment variable automatically.
+
+Before creating the service, generate the admin credentials locally with `npm run admin:setup`. In the ignored `.env` file, copy `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, and `SESSION_SECRET` into the matching secret environment-variable prompts in Render. Do not commit `.env` or share its values. The web service will not start until these three variables are set.
