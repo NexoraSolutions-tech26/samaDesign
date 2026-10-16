@@ -1,11 +1,11 @@
 (() => {
   const items = [
     { key: 'kitchen-1', title: 'مطبخ بخطوط هادئة', category: 'المطابخ' },
-    { key: 'table-1', title: 'طاولة تجمع الأحبة', category: 'الطاولات' },
+    { key: 'table-1', title: 'غرفة نوم بتفاصيل دافئة', category: 'غرف النوم' },
     { key: 'wardrobe-1', title: 'خزانة بتفاصيل ذكية', category: 'الخزائن' },
     { key: 'wall-1', title: 'جدار بلمسة خشب', category: 'الديكورات' },
     { key: 'kitchen-2', title: 'مطبخ يليق ببيتك', category: 'المطابخ' },
-    { key: 'table-2', title: 'طاولة بتوقيعك', category: 'الطاولات' },
+    { key: 'table-2', title: 'غرفة نوم بتصميم عصري', category: 'غرف النوم' },
     { key: 'wardrobe-2', title: 'خزانة مصمّمة لمساحتك', category: 'الخزائن' },
     { key: 'living-1', title: 'تفاصيل تصنع الفرق', category: 'الديكورات' }
   ];
