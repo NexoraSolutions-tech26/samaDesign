@@ -1,5 +1,4 @@
 (() => {
-  const storageKey = 'sama-design-catalog-images-v1';
   const items = [
     { key: 'kitchen-1', title: 'مطبخ بخطوط هادئة', category: 'المطابخ' },
     { key: 'table-1', title: 'طاولة تجمع الأحبة', category: 'الطاولات' },
@@ -15,23 +14,13 @@
   let defaults = {};
   let overrides = {};
 
-  function readOverrides() {
-    try {
-      overrides = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    } catch {
-      overrides = {};
+  async function request(url, options = {}) {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const result = await response.json().catch(() => ({}));
+      throw new Error(result.error || `فشلت العملية (${response.status}).`);
     }
-  }
-
-  function saveOverrides(message) {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(overrides));
-      status.textContent = message;
-      return true;
-    } catch {
-      status.textContent = 'لم يتم الحفظ. مساحة التخزين في المتصفح ممتلئة؛ جرّب صورة أصغر.';
-      return false;
-    }
+    return response.status === 204 ? null : response.json();
   }
 
   function currentImage(item) {
@@ -59,43 +48,53 @@
       image.src = currentImage(item);
       image.onerror = () => { status.textContent = `تعذر تحميل صورة «${item.title}». تحقق من الرابط أو اختر ملفاً آخر.`; };
       const urlInput = card.querySelector('[data-role="url"]');
-      if (!currentImage(item).startsWith('data:image/')) urlInput.value = overrides[item.key] || '';
-      else urlInput.placeholder = 'صورة مرفوعة ومحفوظة محلياً';
+      urlInput.value = overrides[item.key] || '';
     });
     if (window.lucide) window.lucide.createIcons();
   }
 
-  function loadDefaults() {
-    fetch('./index.html', { cache: 'no-store' })
-      .then((response) => {
-        if (!response.ok) throw new Error('تعذر تحميل المعرض');
-        return response.text();
-      })
-      .then((html) => {
-        const documentCopy = new DOMParser().parseFromString(html, 'text/html');
-        documentCopy.querySelectorAll('[data-image-key]').forEach((image) => {
-          defaults[image.dataset.imageKey] = image.getAttribute('src');
-        });
-        readOverrides();
-        render();
-        status.textContent = 'التغييرات تُحفظ تلقائياً في هذا المتصفح.';
-      })
-      .catch(() => {
-        status.textContent = 'تعذر تحميل الصور الأصلية. افتح الصفحة عبر خادم محلي أو موقع منشور.';
+  async function loadDefaults() {
+    try {
+      const [pageResponse, savedImages] = await Promise.all([
+        fetch('./index.html', { cache: 'no-store' }),
+        request('/api/catalog-images', { cache: 'no-store' })
+      ]);
+      if (!pageResponse.ok) throw new Error('تعذر تحميل صور الكتالوج.');
+      const html = await pageResponse.text();
+      const documentCopy = new DOMParser().parseFromString(html, 'text/html');
+      documentCopy.querySelectorAll('[data-image-key]').forEach((image) => {
+        defaults[image.dataset.imageKey] = image.getAttribute('src');
       });
+      overrides = savedImages;
+      render();
+      status.textContent = 'التغييرات تُحفظ على الخادم وتظهر لجميع الزوار.';
+    } catch (error) {
+      status.textContent = error.message || 'تعذر تحميل صور الكتالوج. تحقق من إعداد خدمة التخزين.';
+    }
   }
 
-  function imageToDataUrl(file) {
-    return createImageBitmap(file).then((bitmap) => {
+  async function imageToWebp(file) {
+    const bitmap = await createImageBitmap(file);
+    try {
       const maxSize = 1400;
       const scale = Math.min(1, maxSize / Math.max(bitmap.width, bitmap.height));
       const canvas = document.createElement('canvas');
       canvas.width = Math.round(bitmap.width * scale);
       canvas.height = Math.round(bitmap.height * scale);
-      canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('تعذر تجهيز الصورة في هذا المتصفح.');
+      context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob((result) => {
+          if (result) resolve(result);
+          else reject(new Error('تعذر تحويل الصورة.'));
+        }, 'image/webp', 0.78);
+      });
+      if (blob.type !== 'image/webp') throw new Error('تحويل WebP غير مدعوم في هذا المتصفح.');
+      return blob;
+    } finally {
       bitmap.close();
-      return canvas.toDataURL('image/webp', 0.78);
-    });
+    }
   }
 
   grid.addEventListener('click', async (event) => {
@@ -105,8 +104,15 @@
     if (!item) return;
 
     if (button.dataset.action === 'reset-one') {
-      delete overrides[item.key];
-      if (saveOverrides(`تمت استعادة صورة «${item.title}».`)) render();
+      status.textContent = 'جاري استعادة الصورة الأصلية…';
+      try {
+        await request(`/admin/catalog-images/${item.key}`, { method: 'DELETE' });
+        delete overrides[item.key];
+        render();
+        status.textContent = `تمت استعادة صورة «${item.title}».`;
+      } catch (error) {
+        status.textContent = error.message;
+      }
       return;
     }
 
@@ -115,15 +121,17 @@
     try {
       const url = new URL(value);
       if (!['http:', 'https:'].includes(url.protocol)) throw new Error('رابط غير صالح');
-      const testImage = new Image();
-      testImage.onload = () => {
-        overrides[item.key] = url.href;
-        if (saveOverrides(`تم حفظ صورة «${item.title}».`)) render();
-      };
-      testImage.onerror = () => { status.textContent = 'تعذر فتح الصورة من هذا الرابط. جرّب رابط صورة مباشر.'; };
-      testImage.src = url.href;
-    } catch {
-      status.textContent = 'أدخل رابط صورة صحيحاً يبدأ بـ https:// أو http://.';
+      status.textContent = 'جاري حفظ الصورة على الخادم…';
+      const savedImage = await request(`/admin/catalog-images/${item.key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url.href })
+      });
+      overrides[item.key] = savedImage.url;
+      render();
+      status.textContent = `تم حفظ صورة «${item.title}» لجميع الزوار.`;
+    } catch (error) {
+      status.textContent = error.message || 'أدخل رابط صورة صحيحاً يبدأ بـ https:// أو http://.';
     }
   });
 
@@ -132,26 +140,37 @@
     if (input.dataset.role !== 'file' || !input.files?.[0]) return;
     const item = items.find((entry) => entry.key === input.dataset.key);
     if (!item) return;
-    status.textContent = 'جاري تجهيز الصورة…';
+    status.textContent = 'جاري تجهيز الصورة ورفعها…';
     try {
-      overrides[item.key] = await imageToDataUrl(input.files[0]);
-      if (saveOverrides(`تم حفظ صورة «${item.title}» في هذا المتصفح.`)) render();
-    } catch {
-      status.textContent = 'تعذر تجهيز الصورة. استخدم ملف JPG أو PNG أو WebP.';
-    }
-  });
-
-  document.getElementById('reset-all').addEventListener('click', () => {
-    overrides = {};
-    if (saveOverrides('تمت استعادة الصور الأصلية.')) render();
-  });
-
-  window.addEventListener('storage', (event) => {
-    if (event.key === storageKey || event.key === null) {
-      readOverrides();
+      const image = await imageToWebp(input.files[0]);
+      const savedImage = await request(`/admin/catalog-images/${item.key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'image/webp' },
+        body: image
+      });
+      overrides[item.key] = savedImage.url;
       render();
+      status.textContent = `تم رفع صورة «${item.title}» وأصبحت متاحة لجميع الزوار.`;
+    } catch (error) {
+      status.textContent = error.message || 'تعذر رفع الصورة. استخدم ملف JPG أو PNG أو WebP.';
     }
   });
 
-  loadDefaults();
+  document.getElementById('reset-all').addEventListener('click', async () => {
+    status.textContent = 'جاري استعادة الصور الأصلية…';
+    try {
+      await request('/admin/catalog-images/reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ keys: items.map((item) => item.key) })
+      });
+      overrides = {};
+      render();
+      status.textContent = 'تمت استعادة الصور الأصلية لجميع الزوار.';
+    } catch (error) {
+      status.textContent = error.message;
+    }
+  });
+
+  void loadDefaults();
 })();

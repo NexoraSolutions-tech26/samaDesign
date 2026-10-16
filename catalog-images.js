@@ -1,26 +1,14 @@
 (() => {
-  const storageKey = 'sama-design-catalog-images-v1';
-
-  function applyCatalogImages() {
-    let overrides = {};
-    try {
-      overrides = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    } catch {
-      overrides = {};
-    }
-
-    document.querySelectorAll('[data-image-key]').forEach((image) => {
-      const override = overrides[image.dataset.imageKey];
-      if (typeof override === 'string' && override.startsWith('data:image/')) {
-        image.src = override;
-      } else if (typeof override === 'string' && /^https?:\/\//i.test(override)) {
-        image.src = override;
-      }
-    });
-  }
-
-  applyCatalogImages();
-  window.addEventListener('storage', (event) => {
-    if (event.key === storageKey || event.key === null) applyCatalogImages();
-  });
+  fetch('/api/catalog-images', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error(`تعذر تحميل صور الكتالوج (${response.status})`);
+      return response.json();
+    })
+    .then((images) => {
+      document.querySelectorAll('[data-image-key]').forEach((image) => {
+        const url = images[image.dataset.imageKey];
+        if (typeof url === 'string' && /^https:\/\//i.test(url)) image.src = url;
+      });
+    })
+    .catch((error) => console.error(error));
 })();

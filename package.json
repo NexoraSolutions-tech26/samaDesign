@@ -2,6 +2,9 @@
   "name": "sama-design-catalog",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/tailwind.css --minify",
     "admin:setup": "node setup-admin.js",
